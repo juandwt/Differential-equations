@@ -83,3 +83,39 @@ ani = FuncAnimation(fig, update, frames=range(0, len(xs), 10), interval=30)
 #ani.save('lorenz_attractor.mp4', writer='ffmpeg', fps=30, dpi=200)
 plt.show()
 ```
+
+# Atractor de Rössler
+
+Las ecuaciones del atractor de Rössler son:
+
+$$
+\begin{aligned}
+\frac{dx}{dt} &= - y - z \\\\
+\frac{dy}{dt} &= x + a y \\\\
+\frac{dz}{dt} &= b + z (x - c)
+\end{aligned}
+$$
+
+donde:
+
+- $x, y, z$ son las variables del sistema dinámico,  
+- $a, b, c$ son parámetros del sistema que determinan el comportamiento caótico.
+
+---
+
+# Atractor de Thomas
+
+Las ecuaciones del atractor de Thomas son:
+
+$$
+\begin{aligned}
+\frac{dx}{dt} &= \sin(y) - b x \\\\
+\frac{dy}{dt} &= \sin(z) - b y \\\\
+\frac{dz}{dt} &= \sin(x) - b z
+\end{aligned}
+$$
+
+donde:
+
+- $x, y, z$ son las variables del sistema dinámico,  
+- $b$ es un parámetro que controla la disipación del sistema.
