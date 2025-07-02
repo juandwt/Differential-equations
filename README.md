@@ -83,6 +83,7 @@ ani = FuncAnimation(fig, update, frames=range(0, len(xs), 10), interval=30)
 #ani.save('lorenz_attractor.mp4', writer='ffmpeg', fps=30, dpi=200)
 plt.show()
 ```
+---
 
 # Atractor de Rössler
 
@@ -100,8 +101,6 @@ donde:
 
 - $x, y, z$ son las variables del sistema dinámico,  
 - $a, b, c$ son parámetros del sistema que determinan el comportamiento caótico.
-
----
 
 # Atractor de Thomas
 
