@@ -20,10 +20,10 @@ $$
 
 donde:
 
-- \( x, y, z \) son las variables del sistema dinámico,
-- \( \sigma \) es el número de Prandtl,
-- \( \rho \) es el número de Rayleigh,
-- \( \beta \) es un parámetro geométrico del sistema.
+- $x, y, z$ son las variables del sistema dinámico,
+- $\sigma$ es el número de Prandtl,
+- $\rho$ es el número de Rayleigh,
+- $\beta$ es un parámetro geométrico del sistema.
 
 
 
