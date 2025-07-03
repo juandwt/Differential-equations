@@ -102,6 +102,64 @@ donde:
 - $x, y, z$ son las variables del sistema dinámico,  
 - $a, b, c$ son parámetros del sistema que determinan el comportamiento caótico.
 
+<div align="center">
+  <video src="https://github.com/user-attachments/assets/f03b4468-d452-4e68-92ec-0a32521ae023" width="100" />
+</div>
+
+```python
+import numpy as np
+import matplotlib
+matplotlib.use('TkAgg')
+
+import matplotlib.pyplot as plt
+from matplotlib.animation import FuncAnimation
+
+plt.rcParams['toolbar'] = 'none'
+plt.rcParams['axes3d.mouserotationstyle'] = 'azel'
+
+#a, b, c = 0.2, 0.2, 5.7
+a, b, c = 0.1, 0.1, 14
+x, y, z = 0, 1.0, 1.01
+xs, ys, zs = [], [], []
+
+N  = 10000
+dt = 0.01
+
+for _ in range(N):
+    dx = - y - z
+    dy = x + a * y
+    dz = b + z * (x - c)
+    x  += dt * dx 
+    y  += dt * dy 
+    z  += dt * dz
+    xs.append(x)
+    ys.append(y)
+    zs.append(z)
+
+fig = plt.figure(facecolor='#121212')
+ax  = fig.add_subplot(111, projection='3d')
+ax.set_facecolor('#121212')
+ax.axis('off')
+
+ax.set_xlim(min(xs), max(xs))
+ax.set_ylim(min(ys), max(ys))
+ax.set_zlim(min(zs), max(zs))
+
+line, = ax.plot([], [], [], color='#ffffff')
+
+def update(frame):
+    t = int(frame)
+    line.set_data(xs[:t], ys[:t])
+    line.set_3d_properties(zs[:t])
+    ax.view_init(elev=30, azim=0.1 * t)
+
+ani = FuncAnimation(fig, update, frames=range(0, len(xs), 10), interval=1)
+ani.save('Rossel.mp4', writer='ffmpeg', fps=30, dpi=200)
+plt.show()
+```
+
+
+-
 # Atractor de Thomas
 
 Las ecuaciones del atractor de Thomas son:
