@@ -234,3 +234,77 @@ ani = FuncAnimation(fig, update, frames=range(0, 1000, 1), interval=1, repeat=0)
 #ani.save('Thomas.mp4', writer='ffmpeg', fps=30, dpi=200)
 plt.show()
 ```
+-
+
+# Sol - Tierra
+
+<div align="center">
+  <video src="https://github.com/user-attachments/assets/b2838c65-4cc2-44f5-a2fa-4e1a59a0ebeb" width="100" />
+</div>
+
+
+
+```python
+import numpy as np
+import matplotlib
+matplotlib.use('TkAgg')
+
+import matplotlib.pyplot as plt
+from matplotlib.animation import FuncAnimation
+
+plt.rcParams['toolbar'] = 'none'
+plt.rcParams['axes3d.mouserotationstyle'] = 'azel'
+
+G = 1
+M = 1
+
+x, y, z = 0, 1.0, 0
+vx, vy, vz = 1.0, 0, 0
+xs, ys, zs = [], [], []
+N  = 1000
+dt = 0.01
+
+for _ in range(N):
+    
+    a_x = - (G * M * x) / (x**2 + y**2 + z**2)**(3/2)
+    a_y = - (G * M * y) / (x**2 + y**2 + z**2)**(3/2)
+    a_z = - (G * M * z) / (x**2 + y**2 + z**2)**(3/2)
+    
+    vx += dt * a_x
+    vy += dt * a_y
+    vz += dt * a_z
+
+    x += dt * vx
+    y += dt * vy
+    z += dt * vz
+
+    xs.append(x)
+    ys.append(y)
+    zs.append(z)
+
+fig = plt.figure(facecolor='#121212')
+ax  = fig.add_subplot(111, projection='3d')
+ax.set_facecolor('#121212')
+ax.axis('off')
+
+ax.set_xlim(min(xs), max(xs))
+ax.set_ylim(min(ys), max(ys))
+ax.set_zlim(min(xs), max(xs))
+
+plt.plot(0, 0, 0, marker='o', color='#c6ab00', markersize=30)
+
+line, = plt.plot([], [], [], color='#ffffff')
+sun,  = plt.plot([], [], [], marker='o', color='#ffffff', markersize=6) 
+
+fig.subplots_adjust(left=0, right=1, bottom=0, top=1)
+
+def update(t):
+    sun.set_data([xs[t]], [ys[t]])
+    sun.set_3d_properties([zs[t]])
+    line.set_data(xs[:t], ys[:t])
+    line.set_3d_properties(zs[:t])
+
+ani = FuncAnimation(fig, update, frames=range(0, len(xs), 10), interval=30)
+ani.save('sol_tierra.mp4', writer='ffmpeg', fps=30, dpi=200)
+plt.show()
+```
